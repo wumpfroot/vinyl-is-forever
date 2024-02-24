@@ -1,8 +1,17 @@
 import express from "express";
-import { PORT } from "./config.js";
+import { PORT, mongodbURL } from "./config.js";
+import mongoose from "mongoose";
 
 const app = express();
 
-app.listen(PORT, () => {
-	console.log(`Server has started on port: ${PORT}`);
-});
+mongoose
+	.connect(mongodbURL)
+	.then(() => {
+		console.log("App connected to Mongo");
+		app.listen(PORT, () => {
+			console.log(`Server has started on port: ${PORT}`);
+		});
+	})
+	.catch((error) => {
+		console.error(error);
+	});
