@@ -17,6 +17,9 @@ const vinylSchema = mongoose.Schema({
 		type: Date,
 		required: true,
 	},
+	coverImg: {
+		type: String,
+	},
 });
 
 export const Vinyl = mongoose.model("Vinyl", vinylSchema);
