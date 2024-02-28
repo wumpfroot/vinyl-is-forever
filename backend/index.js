@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import { PORT, mongodbURL } from "./config.js";
 import mongoose from "mongoose";
 import { vinylsRouter } from "./routes/vinyls.js";
@@ -6,6 +7,8 @@ import { vinylsRouter } from "./routes/vinyls.js";
 const app = express();
 
 app.use(express.json());
+
+app.use(cors());
 
 app.use("/vinyls", vinylsRouter);
 
