@@ -1,5 +1,4 @@
 import express from "express";
-import mongoose from "mongoose";
 import { Vinyl } from "../models/vinylModel.js";
 
 const router = express.Router();
@@ -47,7 +46,28 @@ router.get("/:id", async (req, res) => {
 		const { id } = req.params;
 		const vinyl = await Vinyl.findById(id);
 
+		if (!vinyl) {
+			return res.status(404).json({ message: "Vinyl not found" });
+		}
+
 		return res.status(200).json(vinyl);
+	} catch (error) {
+		console.error(error.message);
+		res.status(500).send({ message: error.message });
+	}
+});
+
+//delete a vinyl
+router.delete("/:id", async (req, res) => {
+	try {
+		const { id } = req.params;
+		const vinyl = await Vinyl.findByIdAndDelete(id);
+
+		if (!vinyl) {
+			return res.status(404).json({ message: "Vinyl not found" });
+		}
+
+		return res.status(200).send({ message: "Vinyl deleted succesfully" });
 	} catch (error) {
 		console.error(error.message);
 		res.status(500).send({ message: error.message });
