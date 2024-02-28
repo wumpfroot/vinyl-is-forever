@@ -41,4 +41,17 @@ router.post("/", async (req, res) => {
 	}
 });
 
+//get one vinyl by id
+router.get("/:id", async (req, res) => {
+	try {
+		const { id } = req.params;
+		const vinyl = await Vinyl.findById(id);
+
+		return res.status(200).json(vinyl);
+	} catch (error) {
+		console.error(error.message);
+		res.status(500).send({ message: error.message });
+	}
+});
+
 export { router as vinylsRouter };
