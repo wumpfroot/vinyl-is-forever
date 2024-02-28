@@ -1,8 +1,13 @@
 import express from "express";
 import { PORT, mongodbURL } from "./config.js";
 import mongoose from "mongoose";
+import { vinylsRouter } from "./routes/vinyls.js";
 
 const app = express();
+
+app.use(express.json());
+
+app.use("/vinyls", vinylsRouter);
 
 mongoose
 	.connect(mongodbURL)
