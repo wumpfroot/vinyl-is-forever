@@ -26,8 +26,11 @@ function App() {
 	}, []);
 
 	const formatReleaseDate = (release: string): string => {
-		const options = { year: "numeric", month: "2-digit", day: "2-digit" } as Intl.DateTimeFormatOptions;
-		return new Date(release).toLocaleDateString("en-GB", options);
+		const date = new Date(release);
+		const day = date.getDate().toString().padStart(2, "0");
+		const month = (date.getMonth() + 1).toString().padStart(2, "0");
+		const year = date.getFullYear();
+		return `${day}.${month}.${year}`;
 	};
 
 	return (
