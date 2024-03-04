@@ -39,7 +39,7 @@ function App() {
 	// 	return `${day}.${month}.${year}`;
 	// };
 
-	const onOptionChange = (e) => {
+	const onOptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setGenre(e.target.value);
 	};
 

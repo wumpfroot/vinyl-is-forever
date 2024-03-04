@@ -1,4 +1,8 @@
-const GenreSearch = ({ onOptionChange }) => {
+interface GenreSearchProp {
+	onOptionChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const GenreSearch: React.FC<GenreSearchProp> = ({ onOptionChange }) => {
 	return (
 		<fieldset>
 			<legend>Filter by genre:</legend>
