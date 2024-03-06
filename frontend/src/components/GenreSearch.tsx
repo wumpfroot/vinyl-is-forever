@@ -22,6 +22,10 @@ const GenreSearch: React.FC<GenreSearchProp> = ({ onOptionChange }) => {
 				<input onChange={onOptionChange} type="radio" name="genre" id="pop" value="pop" />
 				<label htmlFor="pop">Pop</label>
 			</div>
+			<div>
+				<input onChange={onOptionChange} type="radio" name="genre" id="metal" value="metal" />
+				<label htmlFor="metal">Metal</label>
+			</div>
 		</fieldset>
 	);
 };
