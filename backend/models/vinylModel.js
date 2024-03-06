@@ -20,6 +20,10 @@ const vinylSchema = mongoose.Schema({
 	coverImg: {
 		type: String,
 	},
+	owned: {
+		type: Boolean,
+		required: true,
+	},
 });
 
 export const Vinyl = mongoose.model("Vinyl", vinylSchema);

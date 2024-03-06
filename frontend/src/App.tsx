@@ -15,13 +15,12 @@ function App() {
 	const [vinyls, setVinyls] = useState<Vinyl[]>([]);
 	const [search, setSearch] = useState("");
 	const [genre, setGenre] = useState("");
-	console.log(genre);
 	// console.log(vinyls[1].genres[1]);
 
 	useEffect(() => {
 		const fetchVinyls = async () => {
 			try {
-				const response: AxiosResponse = await axios.get("http://localhost:5555/vinyls");
+				const response: AxiosResponse = await axios.get("http://localhost:5555/vinyls/owned");
 				setVinyls(response.data);
 			} catch (error) {
 				console.error(error);

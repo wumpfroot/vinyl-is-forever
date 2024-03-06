@@ -3,10 +3,21 @@ import { Vinyl } from "../models/vinylModel.js";
 
 const router = express.Router();
 
-//Show all vinyls
-router.get("/", async (req, res) => {
+//Show all owned vinyls, owned = true
+router.get("/owned", async (req, res) => {
 	try {
-		const vinyls = await Vinyl.find({});
+		const vinyls = await Vinyl.find({ owned: true });
+		return res.status(200).json(vinyls);
+	} catch (error) {
+		console.error(error.message);
+		res.status(500).send({ message: error.message });
+	}
+});
+
+//Show all wishlist vinyls, owned = false
+router.get("/wishlist", async (req, res) => {
+	try {
+		const vinyls = await Vinyl.find({ owned: false });
 		return res.status(200).json(vinyls);
 	} catch (error) {
 		console.error(error.message);
@@ -29,6 +40,7 @@ router.post("/", async (req, res) => {
 			genres: req.body.genres,
 			release: req.body.release,
 			coverImg: req.body.coverImg,
+			owned: req.body.owned,
 		};
 
 		const vinyl = await Vinyl.create(newVinyl);
