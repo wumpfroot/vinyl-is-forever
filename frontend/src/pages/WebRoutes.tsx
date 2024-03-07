@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "./pages/Layout";
-import Owned from "./pages/Owned";
-import Wishlist from "./pages/Wishlist";
-import ErrorPage from "./pages/ErrorPage";
+import Layout from "./Layout.tsx";
+import Owned from "./Owned.tsx";
+import Wishlist from "./Wishlist.tsx";
+import ErrorPage from "./ErrorPage.tsx";
 
-function App() {
+const WebRoutes = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
@@ -16,6 +16,5 @@ function App() {
 			</Routes>
 		</BrowserRouter>
 	);
-}
-
-export default App;
+};
+export default WebRoutes;
