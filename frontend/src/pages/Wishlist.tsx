@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios, { AxiosResponse } from "axios";
-import GenreSearch from "../components/GenreSearch";
+import GenreFilter from "../components/genreFilter/GenreFilter";
 import { Vinyl } from "../types";
 
 const Wishlist = () => {
@@ -27,7 +27,7 @@ const Wishlist = () => {
 		<>
 			<h1 className="text-4xl">Wishlist</h1>
 			<input type="text" onChange={(e) => setSearch(e.target.value)} placeholder="Search albums..." />
-			<GenreSearch onOptionChange={onOptionChange} />
+			<GenreFilter onOptionChange={onOptionChange} />
 			<div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-items-center">
 				{vinyls
 					.filter((album) => {
