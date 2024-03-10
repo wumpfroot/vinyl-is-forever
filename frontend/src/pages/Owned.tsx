@@ -1,11 +1,14 @@
 import { useEffect } from "react";
 import axios, { AxiosResponse } from "axios";
 import GenreFilter from "../components/genreFilter/GenreFilter";
-import { Props } from "../types";
 import VinylGrid from "../components/vinylGrid/VinylGrid";
+import { useVinylStore } from "../store";
 
-function Owned(props: Props) {
-	const { vinyls, setVinyls, search, setSearch, genre, setGenre } = props;
+function Owned() {
+	// const { setVinyls, setSearch, setGenre } = useVinylStore();
+	const setVinyls = useVinylStore((state) => state.setVinyls);
+	const setSearch = useVinylStore((state) => state.setSearch);
+	const setGenre = useVinylStore((state) => state.setGenre);
 
 	useEffect(() => {
 		const fetchVinyls = async () => {
@@ -37,7 +40,7 @@ function Owned(props: Props) {
 			<h1 className="text-4xl">Owned vinyls</h1>
 			<input type="text" onChange={(e) => setSearch(e.target.value)} placeholder="Search albums..." />
 			<GenreFilter onOptionChange={onOptionChange} />
-			<VinylGrid vinyls={vinyls} search={search} genre={genre} />
+			<VinylGrid />
 		</>
 	);
 }

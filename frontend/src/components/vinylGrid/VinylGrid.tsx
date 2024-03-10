@@ -1,5 +1,10 @@
-const VinylGrid = (props) => {
-	const { vinyls, search, genre } = props;
+import { useVinylStore } from "../../store";
+
+const VinylGrid = () => {
+	// const { vinyls, search, genre } = useVinylStore();
+	const vinyls = useVinylStore((state) => state.vinyls);
+	const search = useVinylStore((state) => state.search);
+	const genre = useVinylStore((state) => state.genre);
 
 	return (
 		<div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-items-center">
