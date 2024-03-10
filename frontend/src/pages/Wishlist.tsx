@@ -1,12 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import axios, { AxiosResponse } from "axios";
-import GenreSearch from "../components/GenreSearch";
-import { Vinyl } from "../types";
+import { Props } from "../types";
+import GenreFilter from "../components/genreFilter/GenreFilter";
+import VinylGrid from "../components/vinylGrid/VinylGrid";
 
-const Wishlist = () => {
-	const [vinyls, setVinyls] = useState<Vinyl[]>([]);
-	const [search, setSearch] = useState("");
-	const [genre, setGenre] = useState("");
+const Wishlist = (props: Props) => {
+	const { vinyls, setVinyls, search, setSearch, genre, setGenre } = props;
 
 	useEffect(() => {
 		const fetchWishlistVinyls = async () => {
@@ -18,7 +17,7 @@ const Wishlist = () => {
 			}
 		};
 		fetchWishlistVinyls();
-	}, []);
+	}, [setVinyls]);
 
 	const onOptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setGenre(e.target.value);
@@ -27,25 +26,8 @@ const Wishlist = () => {
 		<>
 			<h1 className="text-4xl">Wishlist</h1>
 			<input type="text" onChange={(e) => setSearch(e.target.value)} placeholder="Search albums..." />
-			<GenreSearch onOptionChange={onOptionChange} />
-			<div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-items-center">
-				{vinyls
-					.filter((album) => {
-						const titleMatch = album.title.toLowerCase().includes(search.toLowerCase());
-						const artistMatch = album.artist.toLowerCase().includes(search.toLowerCase());
-						const genreMatch = !genre || album.genres.some((selectedGenre) => selectedGenre.toLowerCase().includes(genre.toLowerCase()));
-						return (search.toLowerCase() === "" || titleMatch || artistMatch) && genreMatch;
-					})
-					.map((vinyl) => (
-						<div key={vinyl._id} className="group text-2xl my-5 relative w-56 text-center cursor-pointer">
-							<img className="w-full h-auto hover:scale-110 filter hover:brightness-50 ease-in duration-200" src={vinyl.coverImg} alt={`Cover image of ${vinyl.title} by ${vinyl.artist}`} />
-
-							<p className="select-none pointer-events-none absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] opacity-0 group-hover:opacity-100 ease-in duration-200">
-								{vinyl.artist} - {vinyl.title}
-							</p>
-						</div>
-					))}
-			</div>
+			<GenreFilter onOptionChange={onOptionChange} />
+			<VinylGrid vinyls={vinyls} search={search} genre={genre} />
 		</>
 	);
 };
