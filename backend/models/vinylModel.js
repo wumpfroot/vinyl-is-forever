@@ -24,6 +24,12 @@ const vinylSchema = mongoose.Schema({
 		type: Boolean,
 		required: true,
 	},
+	description: {
+		type: String,
+	},
+	favourite_track: {
+		type: String,
+	},
 });
 
 export const Vinyl = mongoose.model("Vinyl", vinylSchema);

@@ -28,9 +28,9 @@ router.get("/wishlist", async (req, res) => {
 //Add a new vinyl
 router.post("/", async (req, res) => {
 	try {
-		if (!req.body.title || !req.body.artist || !req.body.title || !req.body.genres || !req.body.release) {
+		if (!req.body.title || !req.body.artist || !req.body.genres || !req.body.release || !req.body.owned) {
 			return res.status(400).send({
-				message: "All fields are required (except cover img)",
+				message: "Fill all required fields",
 			});
 		}
 
@@ -41,6 +41,8 @@ router.post("/", async (req, res) => {
 			release: req.body.release,
 			coverImg: req.body.coverImg,
 			owned: req.body.owned,
+			description: req.body.description,
+			favourite_track: req.body.favourite_track,
 		};
 
 		const vinyl = await Vinyl.create(newVinyl);
