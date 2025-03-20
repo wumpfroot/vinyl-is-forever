@@ -13,7 +13,7 @@ const Wishlist = () => {
 	useEffect(() => {
 		const fetchWishlistVinyls = async () => {
 			try {
-				const response: AxiosResponse = await axios.get("http://localhost:5555/vinyls/wishlist");
+				const response: AxiosResponse = await axios.get("http://localhost:8080/vinyls/wishlist");
 				setVinyls(response.data);
 			} catch (error) {
 				console.error(error);

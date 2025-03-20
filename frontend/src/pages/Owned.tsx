@@ -13,7 +13,7 @@ function Owned() {
 	useEffect(() => {
 		const fetchVinyls = async () => {
 			try {
-				const response: AxiosResponse = await axios.get("http://localhost:5555/vinyls/owned");
+				const response: AxiosResponse = await axios.get("http://localhost:8080/vinyls/owned");
 				setVinyls(response.data);
 			} catch (error) {
 				console.error(error);
@@ -29,7 +29,7 @@ function Owned() {
 	// 	const month = (date.getMonth() + 1).toString().padStart(2, "0");
 	// 	const year = date.getFullYear();
 	// 	return `${day}.${month}.${year}`;
-	// };
+	// };5555
 
 	const onOptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setGenre(e.target.value);
